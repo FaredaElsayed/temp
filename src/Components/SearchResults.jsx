@@ -23,7 +23,7 @@ const SearchResults = () => {
   };
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxPagesToShow = 3;
+    const maxPagesToShow = 1;
     let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
     let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
     if (endPage - startPage < maxPagesToShow - 1) {
@@ -44,7 +44,6 @@ const SearchResults = () => {
 
     return pageNumbers;
   };
-  const shouldShowAll = results.length > currentResults.length;
 
   return (
     <section
@@ -59,7 +58,7 @@ const SearchResults = () => {
       ) : (
         <>
           <ul className={styles.resultsList}>
-            {(shouldShowAll ? results : currentResults).map((result, index) => (
+            {currentResults.map((result, index) => (
               <li
                 key={index}
                 className={`${styles.resultsItem} ${
